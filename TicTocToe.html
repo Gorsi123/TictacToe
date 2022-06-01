@@ -1,298 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Toc Toe</title>
-    <style>
-        .container{
-            height: 301px;
-            width: 301px;
-            background-color:aqua;
-            margin:0px auto;
-            box-shadow: 5px 10px #888888;
-            font-style: italic;
-        }
-        .block{
-            height: 100px;
-            width: 100px;
-            margin-left:0;
-            margin-right:0;
-            float:left;
-            font-size: 50px;
-            background-color:rgb(138, 221, 221);
-            border: 1px solid black;
-        }
-        input{
-            align-items: center;
-            margin:0 30%;
-            height: 80px;
-            font-size: 50px;
-        }
-        #newgame {
-            height: 50px;
-            width: 200px;
-            border-radius: 4px;
-            color:red;
-            background-color:rgb(223, 106, 238);
-            margin: 10px 43%;
-            box-shadow: 5px 10px #888888;
-        }
-    </style>
-</head>
-<body>
-    <input type="text" name="playername" value="enter player name">
-    <div class="container">
-    <div class="line">
-        <button class="block" id='1'></button>
-        <button class="block" id='2'></button>
-        <button class="block" id='3'></button>
-    </div>
-    <div class="line">
-        <button class="block" id='4'></button>
-        <button class="block" id='5'></button>
-        <button class="block" id='6'></button>
-    </div>
-    <div class="line">
-        <button class="block" id='7'></button>
-        <button class="block" id='8'></button>
-        <button class="block" id='9'></button>
-    </div>
-    </div>
-    <button id="newgame">new game!</button>
-    <script>
-        
-        let tex='✔'
-        var name;
-        var tn=Math.random();
-        const b=[];
-        for(var i=1; i<10;i++){
-            b[i]=document.getElementById(`${i}`);
-        }
-        const input=document.querySelector('input')
-        let frd=confirm('do you want to play with a friend?')
-        if(frd){
-        input.addEventListener('click',()=>{
-            if(input.value=='inter player name'){
-                input.value='';
-            }
-        })
-        input.addEventListener('keypress',function(e){
-            if(e.keyCode==13){
-                input.type="hidden";
-                name=input.value;
-                toss();
-            }
-        })
-        }
-        else{
-            input.type="hidden";
-            name='computer';
-            alert("you play first");
-            tn=0.3;
-        }
-        function crand(){
-            var rn=rand();
-            console.log(rn)
-            b[rn].click();
-        }
-        function rand(){
-            for(var i=1;i<10;i++){
-                if(b[i].innerText==''){
-                b[i].innerText ='✔' ;
-                if(!winning()){
-                    b[i].innerText='';
-                    console.log(i);
-                    return i;
-                }
-                b[i].innerText='';
-            }
-            }
-            if(b[5].innerText==''){
-                return 5;
-            }
-            else if(b[6].innerText==''){
-                return 6;
-            }
-            else if(b[3].innerText==''){
-                return 3;
-            }
-            else if(b[4].innerText==''){
-                return 4;
-            }
-            else if(b[9].innerText==''){
-                return 9;
-            }
-            else if(b[1].innerText==''){
-                return 1;
-            }
-            else if(b[7].innerText==''){
-                return 7;
-            }
-            else if(b[2].innerText==''){
-                return 2;
-            }
-            else if(b[8].innerText==''){
-                return 8;
-            }
-        }
-        function toss(){
-        if(tn<0.5){
-            alert('its your turn');
-        }
-        else{
-            alert(`its ${name}'s turn`)
-        }
-        }
-        b[1].addEventListener('click',()=>{
-            if(b[1].innerText==''&&winning()){
-            b[1].innerText=`${tex}`;
-            ftex();
-            whowon(1);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[2].addEventListener('click',()=>{
-            if(b[2].innerText==''&&winning()){
-            b[2].innerText=`${tex}`;
-            ftex();
-            whowon(2);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[3].addEventListener('click',()=>{
-            if(b[3].innerText==''&&winning()){
-            b[3].innerText=`${tex}`;
-            ftex();
-            whowon(3);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[4].addEventListener('click',()=>{
-            if(b[4].innerText==''&&winning()){
-            b[4].innerText=`${tex}`;
-            ftex();
-            whowon(4);
-            }
-            else{
-                alert('game already finished');
-            }
-        })
-        b[5].addEventListener('click',()=>{
-            if(b[5].innerText==''&&winning()){
-            b[5].innerText=`${tex}`;
-            ftex();
-            whowon(5);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[6].addEventListener('click',()=>{
-            if(b[6].innerText==''&&winning()){
-            b[6].innerText=`${tex}`;
-            ftex();
-            whowon(6);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[7].addEventListener('click',()=>{
-            if(b[7].innerText==''&&winning()){
-            b[7].innerText=`${tex}`;
-            ftex();
-            whowon(7);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[8].addEventListener('click',()=>{
-            if(b[8].innerText==''&&winning()){
-            b[8].innerText=`${tex}`;
-            ftex();
-            whowon(8);
-            }
-            else{
-                alert('game already finished')
-            }
-        })
-        b[9].addEventListener('click',()=>{
-            if(b[9].innerText==''&&winning()){
-            b[9].innerText=`${tex}`;
-            ftex();
-            whowon(9);
-            }
-            else{
-                alert('game already finished')
-            }
-            whowon(9)
-        })
-        const newgame=document.getElementById('newgame');
-        newgame.addEventListener('click',()=>{
-            for(var i=1;i<10;i++){
-                b[i].innerText='';
-            }
-        })
-        function whowon(i){
-            if(!winning()&&tex=='❌'&&tn<0.5){
-                console.log(tn)
-                alert('you won!')
-            }
-            else if(!winning()&&tex=='✔'&&tn<0.5){
-                console.log(tn)
-                alert(`${name} won!`);
-            }
-            else if(!winning()&&tex=='✔'){
-                alert('you won!');
-            }
-            else if(!winning()&&tex=='❌'){
-                alert(`${name} won!`)
-            }
-        }
-        function ftex(){
-            if(tex=='✔'){
-            tex='❌';
-                if(!frd){
-                    crand();
-                }
-            }
-            else{
-                tex='✔';
-            }
-        }
-        function winning(){
-            for(var i=1; i<10;i++) {
-                if(b[i].innerText==''){
-                    break;
-                }
-                else if(i==9&&b[i].innerText!=''){
-                    alert(`game draw`)
-                    return false;
-                }
-            }
-            for(var i=1;i<10;i++) {
-            if((i==1||i==4||i==7)&&(b[i].innerText==b[i+1].innerText&&b[i+1].innerText==b[i+2].innerText&&b[i+2].innerText!='')){
-                return false;
-            }
-            else if((i==1||i==2||i==3)&&(b[i].innerText==b[i+3].innerText&&b[i+3].innerText==b[i+6].innerText&&b[i+6].innerText!='')){
-                return false;
-            }
-            else if((b[1].innerText==b[5].innerText&&b[5].innerText==b[9].innerText&&b[5].innerText!='')||(b[3].innerText==b[5].innerText&&b[5].innerText==b[7].innerText&&b[5].innerText!='')){
-                return false;
-            }
-        }
-        return true;
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tic Toc Toe</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				font-family: Roboto;
+			}
+			.container {
+				height: 100vh;
+				width: 100%;
+				background: rgba(30, 118, 233, 0.103);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			.block {
+				height: 100%;
+				width: 150px;
+				font-size: 32px;
+				background-color: rgb(255, 255, 255);
+				border: 0.1px solid rgba(0, 0, 0, 0.116);
+				border-radius: 5px;
+				box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.068);
+				transition: 0.2s ease background, transform;
+			}
+			.line {
+				height: 150px;
 
-    </script>
-</body>
-</html>
+				display: flex;
+			}
+			.block:hover {
+				background: rgb(248, 248, 248);
+			}
+			.block:active {
+				transform: scale(0.96);
+			}
+			#newgame:hover {
+				background: rgba(0, 0, 255, 0.719);
+				color: white;
+			}
+			#newgame:active {
+				transform: scale(0.96);
+			}
+			input {
+				position: absolute;
+				top: 50px;
+				left: 30px;
+				padding: 20px 30px;
+				border: none;
+				outline: none;
+				border-radius: 2px;
+				box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.068);
+				font-size: 20px;
+			}
+			#newgame {
+				padding: 15px 20px;
+				margin-top: 40px;
+				border-radius: 30px;
+				font-size: 20px;
+				border: 2px solid rgba(0, 0, 255, 0.719);
+				outline: none;
+				background: white;
+				color: rgba(0, 0, 255, 0.719);
+				box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.068);
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="playername" placeholder="Enter player name" />
+		<div class="container">
+			<div class="line">
+				<button class="block" id="1"></button>
+				<button class="block" id="2"></button>
+				<button class="block" id="3"></button>
+			</div>
+			<div class="line">
+				<button class="block" id="4"></button>
+				<button class="block" id="5"></button>
+				<button class="block" id="6"></button>
+			</div>
+			<div class="line">
+				<button class="block" id="7"></button>
+				<button class="block" id="8"></button>
+				<button class="block" id="9"></button>
+			</div>
+			<button id="newgame">New Game</button>
+		</div>
+
+		<script>
+			let tex = "✔";
+			var name;
+			var tn = Math.random();
+			const b = [];
+			for (var i = 1; i < 10; i++) {
+				b[i] = document.getElementById(`${i}`);
+			}
+			const input = document.querySelector("input");
+			let frd = confirm("do you want to play with a friend?");
+			if (frd) {
+				input.addEventListener("click", () => {
+					if (input.value == "Enter player name") {
+						input.value = "";
+					}
+				});
+				input.addEventListener("keypress", function (e) {
+					if (e.keyCode == 13) {
+						input.type = "hidden";
+						name = input.value;
+						toss();
+					}
+				});
+			} else {
+				input.type = "hidden";
+				name = "computer";
+				alert("you play first");
+				tn = 0.3;
+			}
+			function crand() {
+				var rn = rand();
+				console.log(rn);
+				b[rn].click();
+			}
+			function rand() {
+				for (var i = 1; i < 10; i++) {
+					if (b[i].innerText == "") {
+						b[i].innerText = "✔";
+						if (!winning()) {
+							b[i].innerText = "";
+							console.log(i);
+							return i;
+						}
+						b[i].innerText = "";
+					}
+				}
+				if (b[5].innerText == "") {
+					return 5;
+				} else if (b[6].innerText == "") {
+					return 6;
+				} else if (b[3].innerText == "") {
+					return 3;
+				} else if (b[4].innerText == "") {
+					return 4;
+				} else if (b[9].innerText == "") {
+					return 9;
+				} else if (b[1].innerText == "") {
+					return 1;
+				} else if (b[7].innerText == "") {
+					return 7;
+				} else if (b[2].innerText == "") {
+					return 2;
+				} else if (b[8].innerText == "") {
+					return 8;
+				}
+			}
+			function toss() {
+				if (tn < 0.5) {
+					alert("its your turn");
+				} else {
+					alert(`its ${name}'s turn`);
+				}
+			}
+			b[1].addEventListener("click", () => {
+				if (b[1].innerText == "" && winning()) {
+					b[1].innerText = `${tex}`;
+					ftex();
+					whowon(1);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[2].addEventListener("click", () => {
+				if (b[2].innerText == "" && winning()) {
+					b[2].innerText = `${tex}`;
+					ftex();
+					whowon(2);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[3].addEventListener("click", () => {
+				if (b[3].innerText == "" && winning()) {
+					b[3].innerText = `${tex}`;
+					ftex();
+					whowon(3);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[4].addEventListener("click", () => {
+				if (b[4].innerText == "" && winning()) {
+					b[4].innerText = `${tex}`;
+					ftex();
+					whowon(4);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[5].addEventListener("click", () => {
+				if (b[5].innerText == "" && winning()) {
+					b[5].innerText = `${tex}`;
+					ftex();
+					whowon(5);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[6].addEventListener("click", () => {
+				if (b[6].innerText == "" && winning()) {
+					b[6].innerText = `${tex}`;
+					ftex();
+					whowon(6);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[7].addEventListener("click", () => {
+				if (b[7].innerText == "" && winning()) {
+					b[7].innerText = `${tex}`;
+					ftex();
+					whowon(7);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[8].addEventListener("click", () => {
+				if (b[8].innerText == "" && winning()) {
+					b[8].innerText = `${tex}`;
+					ftex();
+					whowon(8);
+				} else {
+					alert("game already finished");
+				}
+			});
+			b[9].addEventListener("click", () => {
+				if (b[9].innerText == "" && winning()) {
+					b[9].innerText = `${tex}`;
+					ftex();
+					whowon(9);
+				} else {
+					alert("game already finished");
+				}
+				whowon(9);
+			});
+			const newgame = document.getElementById("newgame");
+			newgame.addEventListener("click", () => {
+				for (var i = 1; i < 10; i++) {
+					b[i].innerText = "";
+				}
+			});
+			function whowon(i) {
+				if (!winning() && tex == "❌" && tn < 0.5) {
+					console.log(tn);
+					alert("you won!");
+				} else if (!winning() && tex == "✔" && tn < 0.5) {
+					console.log(tn);
+					alert(`${name} won!`);
+				} else if (!winning() && tex == "✔") {
+					alert("you won!");
+				} else if (!winning() && tex == "❌") {
+					alert(`${name} won!`);
+				}
+			}
+			function ftex() {
+				if (tex == "✔") {
+					tex = "❌";
+					if (!frd) {
+						crand();
+					}
+				} else {
+					tex = "✔";
+				}
+			}
+			function winning() {
+				for (var i = 1; i < 10; i++) {
+					if (b[i].innerText == "") {
+						break;
+					} else if (i == 9 && b[i].innerText != "") {
+						alert(`game draw`);
+						return false;
+					}
+				}
+				for (var i = 1; i < 10; i++) {
+					if (
+						(i == 1 || i == 4 || i == 7) &&
+						b[i].innerText == b[i + 1].innerText &&
+						b[i + 1].innerText == b[i + 2].innerText &&
+						b[i + 2].innerText != ""
+					) {
+						return false;
+					} else if (
+						(i == 1 || i == 2 || i == 3) &&
+						b[i].innerText == b[i + 3].innerText &&
+						b[i + 3].innerText == b[i + 6].innerText &&
+						b[i + 6].innerText != ""
+					) {
+						return false;
+					} else if (
+						(b[1].innerText == b[5].innerText &&
+							b[5].innerText == b[9].innerText &&
+							b[5].innerText != "") ||
+						(b[3].innerText == b[5].innerText &&
+							b[5].innerText == b[7].innerText &&
+							b[5].innerText != "")
+					) {
+						return false;
+					}
+				}
+				return true;
+			}
+		</script>
+	</body></html
+>
